@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="container">
+        <input type="text" id="input" placeholder=" search...">
+        <p id="text">
+            Test Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vel erat eget odio cursus egestas. Vivamus
+            quis libero velit. Praesent viverra mattis leo vitae sagittis. Donec tincidunt test bibendum ipsum, vitae
+            fringilla neque aliquet at. Quisque vel mi at nisl rutrum imperdiet non id arcu. Integer quis leo pulvinar
+            orci mollis semper eget sit amet dolor. Sed nec ullamcorper arcu. Vivamus luctus, ipsum id ullamcorper
+            porttitor, tellus purus tristique diam, eget tempus ex purus id nisl. Integer pharetra, lectus nec efficitur
+            vestibulum, ante nunc dignissim lectus, in eleifend diam quam vel neque. Aliquam turpis magna, auctor nec
+            tristique id, eleifend at erat. Vivamus sed sem et arcu placerat lacinia. Nam ultricies quam ac velit
+            accumsan, eu scelerisque justo semper. Maecenas ex ex, posuere ac egestas a, ullamcorper tincidunt tortor.
+            Aliquam placerat mollis quam ut maximus. Phasellus fringilla nulla vel est consectetur, interdum placerat mi
+            consectetur. Nunc tempus, diam eu congue cursus, massa justo dapibus eros, at sollicitudin velit turpis
+            feugiat orci. Vivamus eget turpis fringilla, hendrerit leo a, mattis odio. Nam elementum porttitor suscipit.
+            Ut porta lobortis dapibus. Nunc eleifend finibus lorem a sodales. Nunc eu porta justo last.
+        </p>
+
+        <span id="result"></span>
+    </div>
+
+    <script>
+        const text = document.getElementById("text");
+        const input = document.getElementById("input");
+        const result = document.getElementById("result");
+        const originalText = text.textContent;
+
+        input.addEventListener("input", function () {
+            const val = this.value.toLowerCase();
+            const lowerOrginalText = originalText.toLowerCase();
+            const index = lowerOrginalText.indexOf(val)
+
+            result.innerHTML = index >= 0 ? `Found Text ${index}` : `NotFound Text `;
+            if (val && index !== -1) {
+                const before = originalText.slice(0, index);
+                const match = originalText.slice(index, index + val.length);
+                const after = originalText.slice(index + val.length);
+
+                text.innerHTML = `${before}<mark>${match}</mark>${after}`
+            } else {
+                text.textContent = originalText;
+            }
+        })
+    </script>
+</body>
+
+</html>
